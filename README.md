@@ -1,1 +1,6 @@
-# Proyect_Arkanoid
+ProyectoArkanoid
+Participantes:
+
+Iker
+Borja
+Gustavo
