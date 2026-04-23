@@ -46,5 +46,11 @@ namespace Proyect_Arkanoid
                 Thread.Sleep(50);
             }
         }
+
+
+        public void CrearLadrillos(int nivel)
+        {
+           
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace Proyect_Arkanoid
 {
     internal class Pelota : Entidad
     {
-
+        List<Ladrillo> ladrillos;
         private int x;
         private int y;
 
@@ -27,6 +27,7 @@ namespace Proyect_Arkanoid
             this.x = x;
             this.y = y;
             this.velocidadX = velocidad;
+            this.ladrillos = new List<Ladrillo>();
         }
 
         public void DibujoRectangulo() ///mover a su zona GRAPS
@@ -67,7 +68,9 @@ namespace Proyect_Arkanoid
         {
             Console.CursorVisible = false;
 
-            //Ladrillos(); Implementacion para la nueva clase.
+            //comando temporal 
+            Ladrillo l = new Ladrillo();
+            l.DibujoLadrillo();
             DibujoRectangulo();
 
             while (true)
@@ -120,7 +123,7 @@ namespace Proyect_Arkanoid
                 desplazamientoX = desplazamientoX * -1;
             }
 
-            // Rebote vertical
+
             if (this.y <= altoMinimo || this.y >= altoMaximo)
             {
                 desplazamientoY = desplazamientoY * -1;
