@@ -6,11 +6,6 @@ namespace Proyect_Arkanoid
 {
     internal class Nave
     {
-        public Nave()
-        {
-
-        }
-
         public void MoverNave(ref int x)
         {
             if(Console.KeyAvailable)
@@ -19,7 +14,7 @@ namespace Proyect_Arkanoid
                 {
                     x--;
                 }
-                else if(Console.ReadKey().Key == ConsoleKey.RightArrow && x < Console.WindowWidth-8)
+                else if(Console.ReadKey().Key == ConsoleKey.RightArrow && x < Console.WindowWidth-10)
                 {
                     x++;
                 }
@@ -37,7 +32,7 @@ namespace Proyect_Arkanoid
         {
             Console.SetCursorPosition(x, y);
 
-            Console.Write(" ");
+            Console.Write("        ");
         }
     }
 }
