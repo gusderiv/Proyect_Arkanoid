@@ -15,27 +15,31 @@ namespace Proyect_Arkanoid
 
         public void DibujarMarcos()
         {
-            int alto = 25;
-            int ancho = 80;
-
-            for (int i = 0; i < alto; i++)
+            for (int a = 1; a < Console.WindowWidth; a++)
             {
-                for (int j = 0; j < ancho; j++)
-                {
-                    if (i == 0 || i == alto - 1)
-                    {
-                        Console.Write("-");
-                    }
-                    else if (j == 0 || j == ancho - 1)
-                    {
-                        Console.Write("|");
-                    }
-                    else
-                    {
-                        Console.Write(" ");
-                    }
-                }
-                Console.WriteLine();
+
+                Console.SetCursorPosition(a, 1);
+                Console.Write("-");
+            }
+
+
+            for (int b = 1; b < Console.WindowHeight; b++)
+            {
+                Console.SetCursorPosition(1, b);
+                Console.Write("|");
+
+            }
+
+            for (int c = 1; c < Console.WindowHeight; c++)
+            {
+                Console.SetCursorPosition(Console.WindowWidth - 1, c);
+                Console.Write("|");
+            }
+
+            for (int d = 70; d<Console.WindowWidth; d++)
+            {
+                Console.SetCursorPosition(d, 1);
+                Console.Write("-");
             }
         }
 
@@ -46,7 +50,6 @@ namespace Proyect_Arkanoid
                 Thread.Sleep(50);
             }
         }
-
 
         public void CrearLadrillos(int nivel)
         {
