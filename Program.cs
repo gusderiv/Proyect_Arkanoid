@@ -1,4 +1,4 @@
-﻿namespace Proyect_Arkanoid
+﻿ namespace Proyect_Arkanoid
 {
     internal class Program
     {
