@@ -17,8 +17,8 @@ namespace Proyect_Arkanoid
             this.Y = y;
             this.AlturaMaxima = alturaMaxima;
             this.AnchuraMaxima = anchuraMaxima;
-            this.AlturaMinima = 1;
-            this.AnchuraMinima = 1;
+            this.AlturaMinima = 0;
+            this.AnchuraMinima = 0;
             this.DirX = 1;
             this.DirY = -1;
         }
@@ -39,11 +39,11 @@ namespace Proyect_Arkanoid
         {
             Console.SetCursorPosition(this.X, this.y);
 
-            if (this.Y == AlturaMinima || this.Y == AlturaMaxima)
+            if (this.Y == AlturaMinima || this.Y == 22)
             {
                 Console.Write("-");
             }
-            else if (this.X == AnchuraMinima || this.X == AnchuraMaxima)
+            else if (this.X == AnchuraMinima || this.X == 77)
             {
                 Console.Write("|");
             }
@@ -51,7 +51,6 @@ namespace Proyect_Arkanoid
             {
                 Console.Write(" ");
             }
-
         }
 
         public void MoverP()
@@ -59,12 +58,12 @@ namespace Proyect_Arkanoid
             this.X += DirX;
             this.y += DirY;
 
-            if (this.X == AnchuraMinima || this.X == AnchuraMaxima - 2)
+            if (this.X == AnchuraMinima + 1 || this.X == 77)
             {
                 this.DirX = this.DirX * -1;
             }
 
-            if (this.Y == AlturaMinima || this.Y == AlturaMaxima - 3)
+            if (this.Y == AlturaMinima + 1  || this.Y == 22)
             {
                 this.DirY = this.DirY * -1;
             }
