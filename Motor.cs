@@ -15,32 +15,26 @@ namespace Proyect_Arkanoid
 
         public void DibujarMarcos()
         {
-            for (int a = 1; a < Console.WindowWidth; a++)
-            {
+            int width = 78;
+            int height = 23;
 
-                Console.SetCursorPosition(a, 1);
+            for (int x = 1; x < width - 1; x++)
+            {
+                Console.SetCursorPosition(x, 0);
+                Console.Write("-");
+                Console.SetCursorPosition(x, height - 1);
                 Console.Write("-");
             }
 
-
-            for (int b = 1; b < Console.WindowHeight; b++)
+            for (int y = 1; y < height - 1; y++)
             {
-                Console.SetCursorPosition(1, b);
+                Console.SetCursorPosition(0, y);
                 Console.Write("|");
-
-            }
-
-            for (int c = 1; c < Console.WindowHeight; c++)
-            {
-                Console.SetCursorPosition(Console.WindowWidth - 1, c);
+                Console.SetCursorPosition(width - 1, y);
                 Console.Write("|");
             }
 
-            for (int d = 70; d<Console.WindowWidth; d++)
-            {
-                Console.SetCursorPosition(d, 1);
-                Console.Write("-");
-            }
+            Console.SetCursorPosition(0, height);
         }
 
         public void BucleJuego()
