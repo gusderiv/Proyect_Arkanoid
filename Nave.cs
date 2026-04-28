@@ -30,7 +30,6 @@ namespace Proyect_Arkanoid
                 else if(Console.ReadKey(true).Key == ConsoleKey.RightArrow && x < Console.WindowWidth-11)
                 {
                     x++;
-                    x += 0;
                     action = true;
                 }
             }
