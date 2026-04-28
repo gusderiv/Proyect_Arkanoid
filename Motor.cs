@@ -16,20 +16,16 @@ namespace Proyect_Arkanoid
         {
             DibujarMarcos();
 
-
             while (true)
             {
-                pelota.Dibujar();
                 pelota.Borrar();
                 pelota.MoverP();
+                pelota.Dibujar();
 
+                nave.BorrarNave(posicionX, posicionY);
+                nave.MoverNave(ref posicionX);
                 nave.DibujarNave(posicionX, posicionY);
                 pelota.ComprobarColisionNave(posicionX, posicionY);
-
-                if (nave.MoverNave(ref posicionX))
-                {
-                    nave.BorrarNave(posicionX, 18);
-                }
 
             }
         }
