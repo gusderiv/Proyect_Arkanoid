@@ -69,6 +69,14 @@ namespace Proyect_Arkanoid
             }
         }
 
+
+        public void ComprobarColisionNave(int naveX, int naveY)
+        {
+            if (this.Y == naveY - 1 && this.X >= naveX && this.X <= naveX + 8)
+            {
+                this.DirY = this.DirY * -1;
+            }
+        }
         public void ActualizarPosicion()
         {
             while (true)
