@@ -4,129 +4,86 @@ using System.Text;
 
 namespace Proyect_Arkanoid
 {
-    internal class Pelota : Entidad
+    internal class Pelota : ObjetoJuego
     {
-        List<Ladrillo> ladrillos;
-        private int x;
-        private int y;
+        private int alturaMaxima;
+        private int anchuraMaxima;
+        private int alturaMinima;
+        private int anchuraMinima;
 
-        private int desplazamientoX = 1;
-        private int desplazamientoY = -1;
-
-
-        //Limites (entran como parametros)
-        private int anchoMinimo = 1;
-        private int altoMinimo = 1;
-
-        //Limites (entran como parametros)
-        private int anchoMaximo = 50;
-        private int altoMaximo = 25;
-
-        public Pelota(int x, int y, int velocidad) : base(x, velocidad)
+        public Pelota(int x, int y, int alturaMaxima, int anchuraMaxima) : base(x, y)
         {
-            this.x = x;
-            this.y = y;
-            this.velocidadX = velocidad;
-            this.ladrillos = new List<Ladrillo>();
+            this.X = x;
+            this.Y = y;
+            this.AlturaMaxima = alturaMaxima;
+            this.AnchuraMaxima = anchuraMaxima;
+            this.AlturaMinima = 0;
+            this.AnchuraMinima = 0;
+            this.DirX = 1;
+            this.DirY = -1;
         }
 
-        public void DibujoRectangulo() ///mover a su zona GRAPS
+        public int AlturaMaxima { get => alturaMaxima; set => alturaMaxima = value; }
+        public int AnchuraMaxima { get => anchuraMaxima; set => anchuraMaxima = value; }
+        public int AlturaMinima { get => alturaMinima; set => alturaMinima = value; }
+        public int AnchuraMinima { get => anchuraMinima; set => anchuraMinima = value; }
+
+        public override void Dibujar()
         {
+            Console.SetCursorPosition(this.X, this.Y);
+            Console.Write("O");
+            Thread.Sleep(30);
+        }
 
-            for (int a = 1; a < anchoMaximo; a++)
+        public override void Borrar()
+        {
+            Console.SetCursorPosition(this.X, this.y);
+
+            if (this.Y == AlturaMinima || this.Y == 22)
             {
-
-                Console.SetCursorPosition(a, 1);
-                Console.Write("═");
+                Console.Write("-");
             }
-
-
-            for (int b = 1; b < altoMaximo; b++)
+            else if (this.X == AnchuraMinima || this.X == 77)
             {
-                Console.SetCursorPosition(1, b);
-                Console.Write("║");
-
+                Console.Write("|");
             }
-
-            for (int c = 1; c < altoMaximo; c++)
+            else
             {
-                Console.SetCursorPosition(anchoMaximo, c);
-                Console.Write("║");
-            }
-
-
-            for (int s = 1; s < anchoMaximo; s++)//Se eliminara cuando este implementado nave
-            {
-
-                Console.SetCursorPosition(s, altoMaximo);
                 Console.Write(" ");
             }
-
         }
 
-        public void IniciarMovimiento()
+        public void MoverP()
         {
-            Console.CursorVisible = false;
+            this.X += DirX;
+            this.y += DirY;
 
-            //comando temporal 
-            Ladrillo l = new Ladrillo();
-            l.DibujoLadrillo();
-            DibujoRectangulo();
+            if (this.X == AnchuraMinima + 1 || this.X == 77)
+            {
+                this.DirX = this.DirX * -1;
+            }
 
+            if (this.Y == AlturaMinima + 1  || this.Y == 22)
+            {
+                this.DirY = this.DirY * -1;
+            }
+        }
+
+
+        public void ComprobarColisionNave(int naveX, int naveY)
+        {
+            if (this.Y == naveY - 1 && this.X >= naveX && this.X <= naveX + 8)
+            {
+                this.DirY = this.DirY * -1;
+            }
+        }
+        public void ActualizarPosicion()
+        {
             while (true)
             {
                 Dibujar();
                 Borrar();
                 MoverP();
-            }
-
-
-
-        }
-
-        public override void Dibujar()
-        {
-            Console.SetCursorPosition(this.x, this.y);
-            Console.Write("O");
-            Thread.Sleep(velocidadX);
-        }
-
-        public override void Borrar()
-        {
-            Console.SetCursorPosition(this.x, this.y);
-
-            if (this.y == altoMinimo)
-            {
-                Console.Write("═");
-            }
-
-            else if (this.x == anchoMinimo || this.x == anchoMaximo)
-            {
-                Console.Write("║");
-            }
-
-            else
-            {
-                Console.Write(" ");
-            }
-
-        }
-
-        public void MoverP()
-        {
-            this.x += desplazamientoX;
-            this.y += desplazamientoY;
-
-            if (this.x <= anchoMinimo || this.x >= anchoMaximo)
-            {
-
-                desplazamientoX = desplazamientoX * -1;
-            }
-
-
-            if (this.y <= altoMinimo || this.y >= altoMaximo)
-            {
-                desplazamientoY = desplazamientoY * -1;
             }
         }
     }     

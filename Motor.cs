@@ -4,8 +4,35 @@ using System.Text;
 
 namespace Proyect_Arkanoid
 {
-    internal class Motor
+    internal class Motor//<---- CLASE JUEGO
     {
+        Pelota pelota = new Pelota(40, 10, 23, 78);
+        Nave nave = new Nave();
+
+        private int posicionX = 30;
+        private int posicionY = 18;
+
+        public void ActualizarPosicion()
+        {
+            DibujarMarcos();
+
+
+            while (true)
+            {
+                pelota.Dibujar();
+                pelota.Borrar();
+                pelota.MoverP();
+
+                nave.DibujarNave(posicionX, posicionY);
+                pelota.ComprobarColisionNave(posicionX, posicionY);
+
+                if (nave.MoverNave(ref posicionX))
+                {
+                    nave.BorrarNave(posicionX, 18);
+                }
+
+            }
+        }
         public void ConfigurarConsola()
         {
             Console.SetWindowSize(80, 25);
@@ -15,28 +42,26 @@ namespace Proyect_Arkanoid
 
         public void DibujarMarcos()
         {
-            int alto = 25;
-            int ancho = 80;
+            int width = 78;
+            int height = 23;
 
-            for (int i = 0; i < alto; i++)
+            for (int x = 1; x < width - 1; x++)
             {
-                for (int j = 0; j < ancho; j++)
-                {
-                    if (i == 0 || i == alto - 1)
-                    {
-                        Console.Write("-");
-                    }
-                    else if (j == 0 || j == ancho - 1)
-                    {
-                        Console.Write("|");
-                    }
-                    else
-                    {
-                        Console.Write(" ");
-                    }
-                }
-                Console.WriteLine();
+                Console.SetCursorPosition(x, 0);
+                Console.Write("-");
+                Console.SetCursorPosition(x, height - 1);
+                Console.Write("-");
             }
+
+            for (int y = 1; y < height - 1; y++)
+            {
+                Console.SetCursorPosition(0, y);
+                Console.Write("|");
+                Console.SetCursorPosition(width - 1, y);
+                Console.Write("|");
+            }
+
+            Console.SetCursorPosition(0, height);
         }
 
         public void BucleJuego()
@@ -46,7 +71,6 @@ namespace Proyect_Arkanoid
                 Thread.Sleep(50);
             }
         }
-
 
         public void CrearLadrillos(int nivel)
         {
