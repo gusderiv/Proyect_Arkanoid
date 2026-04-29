@@ -32,7 +32,7 @@ namespace Proyect_Arkanoid
         {
             Console.SetCursorPosition(this.X, this.Y);
             Console.Write("O");
-            Thread.Sleep(30);
+            Thread.Sleep(20);
         }
 
         public override void Borrar()
@@ -69,22 +69,11 @@ namespace Proyect_Arkanoid
             }
         }
 
-
-        public void ComprobarColisionNave(int naveX, int naveY)
-        {
-            if (this.Y == naveY - 1 && this.X >= naveX && this.X <= naveX + 8)
-            {
-                this.DirY = this.DirY * -1;
-            }
-        }
         public void ActualizarPosicion()
         {
-            while (true)
-            {
-                Dibujar();
-                Borrar();
-                MoverP();
-            }
+            Borrar();
+            MoverP();
+            Dibujar();
         }
     }     
 }

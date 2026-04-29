@@ -4,30 +4,26 @@ using System.Text;
 
 namespace Proyect_Arkanoid
 {
-    internal class Motor//<---- CLASE JUEGO
+    internal class Motor
     {
-        Pelota pelota = new Pelota(40, 10, 23, 78);
-
-        private int posicionX = 30;
-        private int posicionY = 18;
-
-        Nave nave = new Nave(30, 20, 5);
+        Juego juego = new Juego();
 
         public void ActualizarPosicion()
         {
-            DibujarMarcos();
-
             while (true)
             {
-                pelota.Borrar();
-                pelota.MoverP();
-                pelota.Dibujar();
 
-                nave.Dibujar();
-                pelota.ComprobarColisionNave(posicionX, posicionY);
-                
-                ConsoleKey tecla = Console.ReadKey(true).Key;
-                nave.Mover(tecla);
+                juego.Pelota.ActualizarPosicion();
+
+                juego.Nave.Dibujar();
+
+                if(Console.KeyAvailable)
+                {
+                    ConsoleKey tecla = Console.ReadKey(true).Key;
+                    juego.Nave.Mover(tecla);
+                }
+
+                juego.comprobarColisiones();
             }
         }
         public void ConfigurarConsola()
@@ -35,6 +31,7 @@ namespace Proyect_Arkanoid
             Console.SetWindowSize(80, 25);
             Console.CursorVisible = false;
             Console.Clear();
+            DibujarMarcos();
         }
 
         public void DibujarMarcos()
@@ -57,6 +54,8 @@ namespace Proyect_Arkanoid
                 Console.SetCursorPosition(width - 1, y);
                 Console.Write("|");
             }
+
+            juego.Nave.Dibujar();
 
             Console.SetCursorPosition(0, height);
         }
