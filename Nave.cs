@@ -20,12 +20,12 @@ namespace Proyect_Arkanoid
             bool action = false;
             if(Console.KeyAvailable)
             {
-                if(Console.ReadKey().Key == ConsoleKey.LeftArrow && x > 2)
+                if(Console.ReadKey(true).Key == ConsoleKey.LeftArrow && x > 1)
                 {
                     x--;
                     action = true;
                 }
-                else if(Console.ReadKey().Key == ConsoleKey.RightArrow && x < Console.WindowWidth-10)
+                else if(Console.ReadKey(true).Key == ConsoleKey.RightArrow && x < Console.WindowWidth-11)
                 {
                     x++;
                     action = true;
@@ -37,26 +37,13 @@ namespace Proyect_Arkanoid
         public void DibujarNave(int x, int y)
         {
             Console.SetCursorPosition(x, y);
-
-            Console.Write("[======]");
+            Console.Write(this.dibujoNave);
         }
-
+        
         public void BorrarNave(int x, int y)
         {
             Console.SetCursorPosition(x, y);
 
-            Console.Write("        ");
-        }
-
-        public override void Dibujar()
-        {
-            Console.SetCursorPosition(x, y);
-            Console.Write("[======]");
-        }
-
-        public override void Borrar()
-        {
-            Console.SetCursorPosition(x, y);
             Console.Write("        ");
         }
 

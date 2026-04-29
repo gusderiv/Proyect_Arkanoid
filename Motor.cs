@@ -17,19 +17,20 @@ namespace Proyect_Arkanoid
         {
             DibujarMarcos();
 
-
             while (true)
             {
-                pelota.Dibujar();
                 pelota.Borrar();
                 pelota.MoverP();
+                pelota.Dibujar();
 
                 nave.Dibujar();
                 pelota.ComprobarColisionNave(posicionX, posicionY);
-                ConsoleKey tecla = Console.ReadKey(true).Key;
-                nave.Mover(tecla);
-                
-                
+
+                if (nave.MoverNave(ref posicionX))
+                {
+                    nave.BorrarNave(posicionX, 18);
+                }
+
             }
         }
         public void ConfigurarConsola()
