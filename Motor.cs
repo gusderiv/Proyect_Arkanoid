@@ -7,10 +7,11 @@ namespace Proyect_Arkanoid
     internal class Motor//<---- CLASE JUEGO
     {
         Pelota pelota = new Pelota(40, 10, 23, 78);
-        Nave nave = new Nave();
 
         private int posicionX = 30;
         private int posicionY = 18;
+
+        Nave nave = new Nave(30, 20, 5);
 
         public void ActualizarPosicion()
         {
@@ -23,14 +24,12 @@ namespace Proyect_Arkanoid
                 pelota.Borrar();
                 pelota.MoverP();
 
-                nave.DibujarNave(posicionX, posicionY);
+                nave.Dibujar();
                 pelota.ComprobarColisionNave(posicionX, posicionY);
-
-                if (nave.MoverNave(ref posicionX))
-                {
-                    nave.BorrarNave(posicionX, 18);
-                }
-
+                ConsoleKey tecla = Console.ReadKey(true).Key;
+                nave.Mover(tecla);
+                
+                
             }
         }
         public void ConfigurarConsola()

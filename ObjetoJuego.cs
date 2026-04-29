@@ -18,11 +18,18 @@ namespace Proyect_Arkanoid
 
         public ObjetoJuego(int x, int y)
         {
+            this.X = x;
+            this.Y = y;
+        }
+
+        public virtual void Dibujar()
+        {
 
         }
 
-        public abstract void Dibujar();
+        public virtual void Borrar()
+        {
 
-        public abstract void Borrar();
+        }
     }
 }
