@@ -15,32 +15,13 @@ namespace Proyect_Arkanoid
             this.Ancho = ancho;
         }
 
-        public bool MoverNave(ref int x)
-        {
-            bool action = false;
-            if(Console.KeyAvailable)
-            {
-                if(Console.ReadKey(true).Key == ConsoleKey.LeftArrow && x > 1)
-                {
-                    x--;
-                    action = true;
-                }
-                else if(Console.ReadKey(true).Key == ConsoleKey.RightArrow && x < Console.WindowWidth-11)
-                {
-                    x++;
-                    action = true;
-                }
-            }
-            return action;
-        }
-
-        public void DibujarNave(int x, int y)
+        public override void Dibujar()
         {
             Console.SetCursorPosition(x, y);
-            Console.Write(this.dibujoNave);
+            Console.Write("[======]");
         }
         
-        public void BorrarNave(int x, int y)
+        public override void Borrar()
         {
             Console.SetCursorPosition(x, y);
 

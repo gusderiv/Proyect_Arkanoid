@@ -25,12 +25,9 @@ namespace Proyect_Arkanoid
 
                 nave.Dibujar();
                 pelota.ComprobarColisionNave(posicionX, posicionY);
-
-                if (nave.MoverNave(ref posicionX))
-                {
-                    nave.BorrarNave(posicionX, 18);
-                }
-
+                
+                ConsoleKey tecla = Console.ReadKey(true).Key;
+                nave.Mover(tecla);
             }
         }
         public void ConfigurarConsola()
