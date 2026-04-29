@@ -39,20 +39,29 @@ namespace Proyect_Arkanoid
             int width = 78;
             int height = 23;
 
+            Console.SetCursorPosition(0, 0);
+            Console.Write("┌");
+            Console.SetCursorPosition(width - 1, 0);
+            Console.Write("┐");
+            Console.SetCursorPosition(0, height - 1);
+            Console.Write("└");
+            Console.SetCursorPosition(width - 1, height - 1);
+            Console.Write("┘");
+
             for (int x = 1; x < width - 1; x++)
             {
                 Console.SetCursorPosition(x, 0);
-                Console.Write("-");
+                Console.Write("─");
                 Console.SetCursorPosition(x, height - 1);
-                Console.Write("-");
+                Console.Write("─");
             }
 
             for (int y = 1; y < height - 1; y++)
             {
                 Console.SetCursorPosition(0, y);
-                Console.Write("|");
+                Console.Write("│");
                 Console.SetCursorPosition(width - 1, y);
-                Console.Write("|");
+                Console.Write("│");
             }
 
             juego.Nave.Dibujar();

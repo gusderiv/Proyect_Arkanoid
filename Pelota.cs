@@ -41,11 +41,11 @@ namespace Proyect_Arkanoid
 
             if (this.Y == AlturaMinima || this.Y == 22)
             {
-                Console.Write("-");
+                Console.Write("─");
             }
             else if (this.X == AnchuraMinima || this.X == 77)
             {
-                Console.Write("|");
+                Console.Write("│");
             }
             else
             {
