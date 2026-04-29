@@ -13,8 +13,8 @@ namespace Proyect_Arkanoid
 
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
-        protected int DirX { get => dirX; set => dirX = value; }
-        protected int DirY { get => dirY; set => dirY = value; }
+        public int DirX { get => dirX; set => dirX = value; }
+        public int DirY { get => dirY; set => dirY = value; }
 
         public ObjetoJuego(int x, int y)
         {
