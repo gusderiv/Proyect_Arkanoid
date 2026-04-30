@@ -15,8 +15,6 @@ namespace Proyect_Arkanoid
 
                 juego.Pelota.ActualizarPosicion();
 
-                juego.Nave.Dibujar();
-
                 if(Console.KeyAvailable)
                 {
                     ConsoleKey tecla = Console.ReadKey(true).Key;
