@@ -30,6 +30,8 @@ namespace Proyect_Arkanoid
             Console.CursorVisible = false;
             Console.Clear();
             DibujarMarcos();
+            juego.generarNivel();
+            juego.dibujarNivel();
         }
 
         public void DibujarMarcos()

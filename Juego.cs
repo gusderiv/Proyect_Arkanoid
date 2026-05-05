@@ -12,6 +12,8 @@ namespace Proyect_Arkanoid
         Pelota pelota;
         Nave nave;
 
+        List<Ladrillo> nivelActual = new List<Ladrillo>();
+
         public Juego()
         {
             this.pelota = new Pelota(40, 10, 23, 78);
@@ -26,6 +28,26 @@ namespace Proyect_Arkanoid
             if (pelota.Y == nave.Y - 1  && pelota.X >= nave.X && pelota.X <= nave.X + nave.Ancho)
             {
                 pelota.DirY = pelota.DirY * -1;
+            }
+        }
+
+        public void generarNivel()
+        {
+            for(int i = 0; i < 11; i++)
+            {
+                Random rnd = new Random();
+
+                Ladrillo ladrillo = new Ladrillo(rnd.Next(2, Console.WindowWidth - 12), rnd.Next(2,Console.WindowHeight-10), 100);
+                nivelActual.Add(ladrillo);
+            }
+        }
+
+        public void dibujarNivel()
+        {
+            foreach(Ladrillo l in nivelActual)
+            {
+                Console.SetCursorPosition(l.X, l.Y);
+                Console.Write(" ## ");
             }
         }
     }
