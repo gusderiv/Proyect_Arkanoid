@@ -33,9 +33,9 @@ namespace Proyect_Arkanoid
 
         public void generarNivel()
         {
-            for(int i = 4; i < Console.WindowWidth-8; i++)
+            for(int i = 4; i < Console.WindowWidth-8; i+= 2)
             {
-                for(int j = 2; j < 9; j++)
+                for(int j = 2; j < 9; j+= 2)
                 {
                     Ladrillo ladrillo = new Ladrillo(i, j, 100);
                     nivelActual.Add(ladrillo);
@@ -48,7 +48,7 @@ namespace Proyect_Arkanoid
             foreach(Ladrillo l in nivelActual)
             {
                 Console.SetCursorPosition(l.X, l.Y);
-                Console.Write("## ");
+                Console.Write("#  ");
             }
         }
     }
