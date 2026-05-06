@@ -37,7 +37,7 @@ namespace Proyect_Arkanoid
             {
                 for(int j = 2; j < 9; j+= 2)
                 {
-                    Ladrillo ladrillo = new Ladrillo(i, j, 100);
+                    Ladrillo ladrillo = new Ladrillo(i, j, 1);
                     nivelActual.Add(ladrillo);
                 }
             }
