@@ -22,6 +22,7 @@ namespace Proyect_Arkanoid
                 }
 
                 juego.comprobarColisiones();
+                juego.ComprobarColisionesLadrillos();
             }
         }
         public void ConfigurarConsola()

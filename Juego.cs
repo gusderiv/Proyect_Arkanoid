@@ -23,6 +23,18 @@ namespace Proyect_Arkanoid
         internal Pelota Pelota { get => pelota; set => pelota = value; }
         internal Nave Nave { get => nave; set => nave = value; }
 
+        public void ComprobarColisionesLadrillos()
+        {
+            foreach (Ladrillo ladrillo in nivelActual)
+            {
+                if (pelota.Y == ladrillo.Y && pelota.X >= ladrillo.X && pelota.X <= ladrillo.X)
+                {
+                    pelota.DirY = pelota.DirY * -1;
+                }
+            }
+            //nivelActual.RemoveAll(la=>la.RecibirGolpe()==true);//sin implementar el metodo eliminar los ladrillos destruidos de golpe.
+        }
+
         public void comprobarColisiones()
         {
             if (pelota.Y == nave.Y - 1  && pelota.X >= nave.X && pelota.X <= nave.X + nave.Ancho)

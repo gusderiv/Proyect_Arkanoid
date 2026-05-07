@@ -16,13 +16,16 @@ namespace Proyect_Arkanoid
             this.destruido = false;
         }
 
-        public void RecibirGolpe()
+        public bool RecibirGolpe()
         {
             resistencia--;
+
             if(resistencia <= 0)
             {
                 destruido = true;
             }
+
+            return destruido;
         }
     }
 }
