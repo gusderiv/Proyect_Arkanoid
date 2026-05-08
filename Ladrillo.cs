@@ -16,6 +16,9 @@ namespace Proyect_Arkanoid
             this.destruido = false;
         }
 
+        public bool Destruido { get => destruido; set => destruido = value; }
+        public int Resistencia { get => resistencia; set => resistencia = value; }
+
         public bool RecibirGolpe()
         {
             resistencia--;

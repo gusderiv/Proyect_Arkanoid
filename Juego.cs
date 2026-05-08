@@ -27,9 +27,17 @@ namespace Proyect_Arkanoid
         {
             foreach (Ladrillo ladrillo in nivelActual)
             {
-                if (pelota.Y == ladrillo.Y && pelota.X >= ladrillo.X && pelota.X <= ladrillo.X)
+                if(!ladrillo.Destruido)
                 {
-                    pelota.DirY = pelota.DirY * -1;
+                    if (pelota.Y == ladrillo.Y && pelota.X >= ladrillo.X && pelota.X <= ladrillo.X)
+                    {
+                        pelota.DirY = pelota.DirY * -1;
+                        ladrillo.Resistencia--;
+                        if(ladrillo.Resistencia == 0)
+                        {
+                            ladrillo.Destruido = true;
+                        }
+                    }
                 }
             }
             //nivelActual.RemoveAll(la=>la.RecibirGolpe()==true);//sin implementar el metodo eliminar los ladrillos destruidos de golpe.
@@ -60,7 +68,7 @@ namespace Proyect_Arkanoid
             foreach(Ladrillo l in nivelActual)
             {
                 Console.SetCursorPosition(l.X, l.Y);
-                Console.Write("#  ");
+                Console.Write("#");
             }
         }
     }

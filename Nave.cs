@@ -35,11 +35,11 @@ namespace Proyect_Arkanoid
 
             if(tecla == ConsoleKey.LeftArrow && X > 2)
             {
-                X--;
+                X-=2;
             }
             else if(tecla == ConsoleKey.RightArrow && X < Console.WindowWidth-12)
             {
-                X++;
+                X+=2;
             }
 
             Dibujar();
