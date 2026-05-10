@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Proyect_Arkanoid
         Nave nave;
 
         List<Ladrillo> nivelActual = new List<Ladrillo>();
+        private int cantida;
 
         public Juego()
         {
@@ -33,6 +35,7 @@ namespace Proyect_Arkanoid
                     {
                         pelota.DirY = pelota.DirY * -1;
                         ladrillo.Resistencia--;
+
                         if(ladrillo.Resistencia == 0)
                         {
                             ladrillo.Destruido = true;
@@ -61,6 +64,7 @@ namespace Proyect_Arkanoid
                     nivelActual.Add(ladrillo);
                 }
             }
+            Console.WriteLine("ladrillos cargados por bloques: "+nivelActual.Count);
         }
 
         public void dibujarNivel()
@@ -70,6 +74,14 @@ namespace Proyect_Arkanoid
                 Console.SetCursorPosition(l.X, l.Y);
                 Console.Write("#");
             }
+        }
+
+
+        public int contenidolistaLadrillo()
+        {
+            cantida = nivelActual.Count;
+            Console.WriteLine("Cantidad de ladrillos en el nivel: " + cantida);
+            return cantida;
         }
     }
 }
