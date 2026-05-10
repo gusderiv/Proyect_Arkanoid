@@ -14,8 +14,8 @@ namespace Proyect_Arkanoid
             {
 
                 juego.Pelota.ActualizarPosicion();
-
-                if(Console.KeyAvailable)
+                
+                if (Console.KeyAvailable)
                 {
                     ConsoleKey tecla = Console.ReadKey(true).Key;
                     juego.Nave.Mover(tecla);
@@ -65,9 +65,9 @@ namespace Proyect_Arkanoid
                 Console.Write("│");
             }
 
-            juego.Nave.Dibujar();
-
+            juego.Nave.Dibujar();                
             Console.SetCursorPosition(0, height);
+           
         }
 
         public void BucleJuego()
@@ -81,6 +81,11 @@ namespace Proyect_Arkanoid
         public void CrearLadrillos(int nivel)
         {
            
+        }
+
+        public void cantidadLadrillos()
+        {
+            Console.WriteLine(juego.contenidolistaLadrillo());
         }
     }
 }

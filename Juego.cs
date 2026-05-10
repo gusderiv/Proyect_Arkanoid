@@ -27,8 +27,13 @@ namespace Proyect_Arkanoid
 
         public void ComprobarColisionesLadrillos()
         {
+            Ladrillo ladrilloGolpeado = null;
+
+            Console.SetCursorPosition(1,23);
+            Console.Write($"contenido lista: {contenidolistaLadrillo(),-5}");//solo para verificar que la lista se esta vaciando, eliminar despues.
             foreach (Ladrillo ladrillo in nivelActual)
             {
+
                 if(!ladrillo.Destruido)
                 {
                     if (pelota.Y == ladrillo.Y && pelota.X >= ladrillo.X && pelota.X <= ladrillo.X)
@@ -39,11 +44,16 @@ namespace Proyect_Arkanoid
                         if(ladrillo.Resistencia == 0)
                         {
                             ladrillo.Destruido = true;
+                            ladrilloGolpeado = ladrillo;
                         }
                     }
-                }
+                }  
             }
-            //nivelActual.RemoveAll(la=>la.RecibirGolpe()==true);//sin implementar el metodo eliminar los ladrillos destruidos de golpe.
+
+            if (ladrilloGolpeado != null)
+            {
+                nivelActual.Remove(ladrilloGolpeado);
+            }
         }
 
         public void comprobarColisiones()
@@ -64,7 +74,7 @@ namespace Proyect_Arkanoid
                     nivelActual.Add(ladrillo);
                 }
             }
-            Console.WriteLine("ladrillos cargados por bloques: "+nivelActual.Count);
+          
         }
 
         public void dibujarNivel()
@@ -80,7 +90,6 @@ namespace Proyect_Arkanoid
         public int contenidolistaLadrillo()
         {
             cantida = nivelActual.Count;
-            Console.WriteLine("Cantidad de ladrillos en el nivel: " + cantida);
             return cantida;
         }
     }
