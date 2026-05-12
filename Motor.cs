@@ -7,15 +7,18 @@ namespace Proyect_Arkanoid
     internal class Motor
     {
         Juego juego = new Juego();
+        bool seguirJugando = true;
 
         public void ActualizarPosicion()
         {
-            while (true)
+            while (seguirJugando)
             {
+                Console.SetCursorPosition(1, 1);
+                Console.Write($"Vida: {juego.Vida} | puntuación: {juego.Puntuacion}");
 
                 juego.Pelota.ActualizarPosicion();
 
-                if(Console.KeyAvailable)
+                if (Console.KeyAvailable)
                 {
                     ConsoleKey tecla = Console.ReadKey(true).Key;
                     juego.Nave.Mover(tecla);
@@ -23,6 +26,7 @@ namespace Proyect_Arkanoid
 
                 juego.comprobarColisiones();
                 juego.ComprobarColisionesLadrillos();
+                perderVida();
             }
         }
         public void ConfigurarConsola()
@@ -40,9 +44,9 @@ namespace Proyect_Arkanoid
             int width = 78;
             int height = 23;
 
-            Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(0, 2);
             Console.Write("┌");
-            Console.SetCursorPosition(width - 1, 0);
+            Console.SetCursorPosition(width - 1, 2);
             Console.Write("┐");
             Console.SetCursorPosition(0, height - 1);
             Console.Write("└");
@@ -51,13 +55,13 @@ namespace Proyect_Arkanoid
 
             for (int x = 1; x < width - 1; x++)
             {
-                Console.SetCursorPosition(x, 0);
+                Console.SetCursorPosition(x, 2);
                 Console.Write("─");
                 Console.SetCursorPosition(x, height - 1);
                 Console.Write("─");
             }
 
-            for (int y = 1; y < height - 1; y++)
+            for (int y = 3; y < height - 1; y++)
             {
                 Console.SetCursorPosition(0, y);
                 Console.Write("│");
@@ -81,6 +85,14 @@ namespace Proyect_Arkanoid
         public void CrearLadrillos(int nivel)
         {
            
+        }
+
+        public void perderVida()
+        {
+            if(juego.Pelota.Y == juego.Nave.Y + 2)
+            {
+                juego.Vida -= 1;
+            }
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Proyect_Arkanoid
     {
         Pelota pelota;
         Nave nave;
+        int puntuacion;
+        int vida;
 
         List<Ladrillo> nivelActual = new List<Ladrillo>();
 
@@ -18,10 +20,14 @@ namespace Proyect_Arkanoid
         {
             this.pelota = new Pelota(40, 10, 23, 78);
             this.nave = new Nave(30, 20);
+            this.puntuacion = 0;
+            this.vida = 3;
         }
 
         internal Pelota Pelota { get => pelota; set => pelota = value; }
         internal Nave Nave { get => nave; set => nave = value; }
+        public int Puntuacion { get => puntuacion; set => puntuacion = value; }
+        public int Vida { get => vida; set => vida = value; }
 
         public void ComprobarColisionesLadrillos()
         {
@@ -53,9 +59,9 @@ namespace Proyect_Arkanoid
 
         public void generarNivel()
         {
-            for(int i = 4; i < Console.WindowWidth-8; i+= 2)
+            for(int i = 6; i < Console.WindowWidth-8; i+= 2)
             {
-                for(int j = 2; j < 9; j+= 2)
+                for(int j = 4; j < 9; j+= 2)
                 {
                     Ladrillo ladrillo = new Ladrillo(i, j, 1);
                     nivelActual.Add(ladrillo);
