@@ -71,7 +71,6 @@ namespace Proyect_Arkanoid
 
             juego.Nave.Dibujar();                
             Console.SetCursorPosition(0, height);
-           
         }
 
         public void BucleJuego()
@@ -94,10 +93,9 @@ namespace Proyect_Arkanoid
                 juego.Vida -= 1;
             }
         }
-
         public void cantidadLadrillos()
         {
-            Console.WriteLine(juego.contenidolistaLadrillo());
+            Console.WriteLine(juego.NivelActual);
         }
     }
 }

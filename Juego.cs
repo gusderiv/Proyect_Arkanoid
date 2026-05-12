@@ -28,6 +28,7 @@ namespace Proyect_Arkanoid
         internal Nave Nave { get => nave; set => nave = value; }
         public int Puntuacion { get => puntuacion; set => puntuacion = value; }
         public int Vida { get => vida; set => vida = value; }
+        internal List<Ladrillo> NivelActual { get => nivelActual; set => nivelActual = value; }
 
         public void ComprobarColisionesLadrillos()
         {
