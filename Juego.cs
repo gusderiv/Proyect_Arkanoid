@@ -92,5 +92,19 @@ namespace Proyect_Arkanoid
             cantida = nivelActual.Count;
             return cantida;
         }
+
+        public void MostrarMenu()
+        {
+            EstadoJuego.EstadoActual = EstadoJuego.Estado.Menu;
+
+            Console.WriteLine("Pulsa la tecla Enter");
+
+            ConsoleKeyInfo tecla = Console.ReadKey();
+
+            if (tecla.Key == ConsoleKey.Enter)
+            {
+                EstadoJuego.EstadoActual = EstadoJuego.Estado.Jugando;
+            }
+        }
     }
 }

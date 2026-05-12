@@ -10,19 +10,37 @@ namespace Proyect_Arkanoid
 
         public void ActualizarPosicion()
         {
-            while (true)
+            while(true)
             {
-
-                juego.Pelota.ActualizarPosicion();
-                
-                if (Console.KeyAvailable)
+                switch (EstadoJuego.EstadoActual)
                 {
-                    ConsoleKey tecla = Console.ReadKey(true).Key;
-                    juego.Nave.Mover(tecla);
-                }
+                    case EstadoJuego.Estado.Menu:
+                        juego.MostrarMenu();
+                        break;
 
-                juego.comprobarColisiones();
-                juego.ComprobarColisionesLadrillos();
+                    case EstadoJuego.Estado.Jugando:
+                        while (EstadoJuego.EstadoActual == EstadoJuego.Estado.Jugando)
+                        {
+                            juego.Pelota.ActualizarPosicion();
+
+                            if (Console.KeyAvailable)
+                            {
+                                ConsoleKey tecla = Console.ReadKey(true).Key;
+                                juego.Nave.Mover(tecla);
+                            }
+
+                            juego.comprobarColisiones();
+                            juego.ComprobarColisionesLadrillos();
+                        }
+                        break;
+
+                    case EstadoJuego.Estado.Pausa:
+                        Console.WriteLine("Juego pausado");
+                        break;
+                    case EstadoJuego.Estado.GameOver:
+                        Console.WriteLine("Juego terminado");
+                        break;
+                }
             }
         }
         public void ConfigurarConsola()
