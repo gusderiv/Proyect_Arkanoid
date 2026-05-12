@@ -8,41 +8,7 @@ namespace Proyect_Arkanoid
     {
         Juego juego = new Juego();
 
-        public void ActualizarPosicion()
-        {
-            while(true)
-            {
-                switch (EstadoJuego.EstadoActual)
-                {
-                    case EstadoJuego.Estado.Menu:
-                        juego.MostrarMenu();
-                        break;
-
-                    case EstadoJuego.Estado.Jugando:
-                        while (EstadoJuego.EstadoActual == EstadoJuego.Estado.Jugando)
-                        {
-                            juego.Pelota.ActualizarPosicion();
-
-                            if (Console.KeyAvailable)
-                            {
-                                ConsoleKey tecla = Console.ReadKey(true).Key;
-                                juego.Nave.Mover(tecla);
-                            }
-
-                            juego.comprobarColisiones();
-                            juego.ComprobarColisionesLadrillos();
-                        }
-                        break;
-
-                    case EstadoJuego.Estado.Pausa:
-                        Console.WriteLine("Juego pausado");
-                        break;
-                    case EstadoJuego.Estado.GameOver:
-                        Console.WriteLine("Juego terminado");
-                        break;
-                }
-            }
-        }
+        
         public void ConfigurarConsola()
         {
             Console.SetWindowSize(80, 25);
