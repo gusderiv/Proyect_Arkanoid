@@ -7,6 +7,7 @@ namespace Proyect_Arkanoid
     internal class Motor
     {
         Juego juego = new Juego();
+        bool seguirJugando = true;
 
         
         public void ConfigurarConsola()
@@ -24,9 +25,9 @@ namespace Proyect_Arkanoid
             int width = 78;
             int height = 23;
 
-            Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(0, 2);
             Console.Write("┌");
-            Console.SetCursorPosition(width - 1, 0);
+            Console.SetCursorPosition(width - 1, 2);
             Console.Write("┐");
             Console.SetCursorPosition(0, height - 1);
             Console.Write("└");
@@ -35,13 +36,13 @@ namespace Proyect_Arkanoid
 
             for (int x = 1; x < width - 1; x++)
             {
-                Console.SetCursorPosition(x, 0);
+                Console.SetCursorPosition(x, 2);
                 Console.Write("─");
                 Console.SetCursorPosition(x, height - 1);
                 Console.Write("─");
             }
 
-            for (int y = 1; y < height - 1; y++)
+            for (int y = 3; y < height - 1; y++)
             {
                 Console.SetCursorPosition(0, y);
                 Console.Write("│");
@@ -51,7 +52,6 @@ namespace Proyect_Arkanoid
 
             juego.Nave.Dibujar();                
             Console.SetCursorPosition(0, height);
-           
         }
 
         public void BucleJuego()
@@ -67,9 +67,16 @@ namespace Proyect_Arkanoid
            
         }
 
+        public void perderVida()
+        {
+            if(juego.Pelota.Y == juego.Nave.Y + 2)
+            {
+                juego.Vida -= 1;
+            }
+        }
         public void cantidadLadrillos()
         {
-            Console.WriteLine(juego.contenidolistaLadrillo());
+            Console.WriteLine(juego.NivelActual);
         }
     }
 }

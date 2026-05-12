@@ -32,14 +32,14 @@ namespace Proyect_Arkanoid
         {
             Console.SetCursorPosition(this.X, this.Y);
             Console.Write("O");
-            Thread.Sleep(25);
+            Thread.Sleep(20);
         }
 
         public override void Borrar()
         {
             Console.SetCursorPosition(this.X, this.y);
 
-            if (this.Y == AlturaMinima || this.Y == 22)
+            if (this.Y == 2 || this.Y == 22)
             {
                 Console.Write("─");
             }
@@ -58,12 +58,12 @@ namespace Proyect_Arkanoid
             this.X += DirX;
             this.y += DirY;
 
-            if (this.X == AnchuraMinima + 1 || this.X == 77)
+            if (this.X == AnchuraMinima + 3 || this.X == 77)
             {
                 this.DirX = this.DirX * -1;
             }
 
-            if (this.Y == AlturaMinima + 1  || this.Y == 22)
+            if (this.Y == AlturaMinima + 3 || this.Y == 22)
             {
                 this.DirY = this.DirY * -1;
             }
