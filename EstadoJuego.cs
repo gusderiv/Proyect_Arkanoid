@@ -8,6 +8,8 @@ namespace Proyect_Arkanoid
 {
     internal class EstadoJuego
     {
-        
+        public enum Estado { Menu, Jugando, Pausa, GameOver }
+
+        public static Estado EstadoActual = Estado.Menu;
     }
 }
