@@ -16,7 +16,7 @@ namespace Proyect_Arkanoid
         int vida;
 
         List<Ladrillo> nivelActual = new List<Ladrillo>();
-
+        private int cantida;
         public Juego()
         {
             this.pelota = new Pelota(40, 10, 23, 78);
@@ -33,6 +33,11 @@ namespace Proyect_Arkanoid
 
         public void ComprobarColisionesLadrillos()
         {
+            Ladrillo ladrilloGolpeado = null;
+
+            Console.SetCursorPosition(1, 23);
+            Console.Write($"contenido lista: {contenidolistaLadrillo(),-5}");
+
             foreach (Ladrillo ladrillo in nivelActual)
             {
                 if(!ladrillo.Destruido)
@@ -41,12 +46,20 @@ namespace Proyect_Arkanoid
                     {
                         pelota.DirY = pelota.DirY * -1;
                         ladrillo.Resistencia--;
+
                         if(ladrillo.Resistencia == 0)
                         {
                             ladrillo.Destruido = true;
+                            ladrilloGolpeado = ladrillo;
+
                         }
                     }
                 }
+            }
+
+            if (ladrilloGolpeado != null)
+            {
+                nivelActual.Remove(ladrilloGolpeado);
             }
             //nivelActual.RemoveAll(la=>la.RecibirGolpe()==true);//sin implementar el metodo eliminar los ladrillos destruidos de golpe.
         }
@@ -93,5 +106,12 @@ namespace Proyect_Arkanoid
                 EstadoJuego.EstadoActual = EstadoJuego.Estado.Jugando;
             }
         }
+
+        public int contenidolistaLadrillo()
+        {
+            cantida = nivelActual.Count;
+            return cantida;
+        }
+
     }
 }

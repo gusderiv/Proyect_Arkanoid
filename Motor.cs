@@ -60,7 +60,6 @@ namespace Proyect_Arkanoid
             }
         }
 
-
         public void ConfigurarConsola()
         {
             Console.SetWindowSize(80, 25);
@@ -124,9 +123,24 @@ namespace Proyect_Arkanoid
                 EstadoJuego.EstadoActual = EstadoJuego.Estado.GameOver;
             }
         }
+
         public void cantidadLadrillos()
         {
-            Console.WriteLine(juego.NivelActual);
+            int cantidadLadrillos = juego.contenidolistaLadrillo();
+
+            if (cantidadLadrillos > 0) 
+            {
+              Console.SetCursorPosition(1, 24);
+              Console.WriteLine($"Ladrillos restantes: {juego.contenidolistaLadrillo}");
+            }
+
+            else 
+            {
+              Console.WriteLine("Lista vacia");
+            }
+            
+
         }
+
     }
 }
