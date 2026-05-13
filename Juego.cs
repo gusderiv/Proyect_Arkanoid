@@ -36,7 +36,8 @@ namespace Proyect_Arkanoid
             Ladrillo ladrilloGolpeado = null;
 
             Console.SetCursorPosition(1, 23);
-            Console.Write($"contenido lista: {contenidolistaLadrillo(),-5}");
+
+            Console.Write($"Cantidad ladrillos sin destruir: {contenidolistaLadrillo(),-5}");
 
             foreach (Ladrillo ladrillo in nivelActual)
             {
@@ -51,7 +52,6 @@ namespace Proyect_Arkanoid
                         {
                             ladrillo.Destruido = true;
                             ladrilloGolpeado = ladrillo;
-
                         }
                     }
                 }
