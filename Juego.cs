@@ -61,7 +61,6 @@ namespace Proyect_Arkanoid
             {
                 nivelActual.Remove(ladrilloGolpeado);
             }
-            //nivelActual.RemoveAll(la=>la.RecibirGolpe()==true);//sin implementar el metodo eliminar los ladrillos destruidos de golpe.
         }
 
         public void comprobarColisiones()
