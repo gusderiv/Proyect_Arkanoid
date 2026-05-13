@@ -8,8 +8,6 @@
 
             Motor motor = new Motor();
 
-            motor.ConfigurarConsola();
-            //motor.DibujarMarcos();
             motor.ActualizarPosicion();
 
             int alturaMaxima = Console.WindowHeight;

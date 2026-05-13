@@ -32,7 +32,7 @@ namespace Proyect_Arkanoid
         {
             Console.SetCursorPosition(this.X, this.Y);
             Console.Write("O");
-            Thread.Sleep(20);
+            Thread.Sleep(30);
         }
 
         public override void Borrar()

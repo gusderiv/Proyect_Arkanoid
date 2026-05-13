@@ -11,7 +11,7 @@ namespace Proyect_Arkanoid
 
         public void ActualizarPosicion()
         {
-            while (true)
+            while (seguirJugando)
             {
                 switch (EstadoJuego.EstadoActual)
                 {
@@ -20,8 +20,12 @@ namespace Proyect_Arkanoid
                         break;
 
                     case EstadoJuego.Estado.Jugando:
+                        Console.Clear();
+                        ConfigurarConsola();
                         while (EstadoJuego.EstadoActual == EstadoJuego.Estado.Jugando)
                         {
+                            Console.SetCursorPosition(0, 1);
+                            Console.Write($"Vida: {juego.Vida} | Puntuacion: {juego.Puntuacion}");
                             juego.Pelota.ActualizarPosicion();
 
                             if (Console.KeyAvailable)
@@ -32,14 +36,25 @@ namespace Proyect_Arkanoid
 
                             juego.comprobarColisiones();
                             juego.ComprobarColisionesLadrillos();
+                            perderVida();
                         }
                         break;
 
                     case EstadoJuego.Estado.Pausa:
+                        Console.Clear();
                         Console.WriteLine("Juego pausado");
                         break;
                     case EstadoJuego.Estado.GameOver:
+                        Console.Clear();
                         Console.WriteLine("Juego terminado");
+                        Console.WriteLine("Pulsa ENTER para seguir jugando...");
+
+                        ConsoleKeyInfo teclaENTER = Console.ReadKey();
+
+                        if (teclaENTER.Key == ConsoleKey.Enter)
+                        {
+                            EstadoJuego.EstadoActual = EstadoJuego.Estado.Jugando;
+                        }
                         break;
                 }
             }
@@ -98,16 +113,15 @@ namespace Proyect_Arkanoid
             }
         }
 
-        public void CrearLadrillos(int nivel)
-        {
-           
-        }
-
         public void perderVida()
         {
-            if(juego.Pelota.Y == juego.Nave.Y + 2)
+            if(juego.Pelota.Y == juego.Nave.Y + 2 && juego.Vida > 0)
             {
                 juego.Vida -= 1;
+            }
+            else if(juego.Vida == 0)
+            {
+                EstadoJuego.EstadoActual = EstadoJuego.Estado.GameOver;
             }
         }
         public void cantidadLadrillos()
