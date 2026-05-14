@@ -11,6 +11,8 @@ namespace Proyect_Arkanoid
 
         public void ActualizarPosicion()
         {
+            int contador = 0;
+            int puntuacionFinal = 0;
             while (seguirJugando)
             {
                 switch (EstadoJuego.EstadoActual)
@@ -22,6 +24,7 @@ namespace Proyect_Arkanoid
                         break;
 
                     case EstadoJuego.Estado.Jugando:
+                        contador = 0;
                         if (Console.KeyAvailable)
                         {
                             var key = Console.ReadKey(true).Key;
@@ -45,7 +48,7 @@ namespace Proyect_Arkanoid
 
                     case EstadoJuego.Estado.Pausa:
                         Console.SetCursorPosition(1, 27);
-                        Console.WriteLine("Juego pausado. Pulsa P para continuar");
+                        Console.WriteLine("Pulsa P para Pausar o Continuar");
                         var teclaPausa = Console.ReadKey(true).Key;
                         if (teclaPausa == ConsoleKey.P)
                         {
@@ -53,9 +56,15 @@ namespace Proyect_Arkanoid
                         }
                         break;
                     case EstadoJuego.Estado.GameOver:
+                        if(contador==0)
+                        {
+                            puntuacionFinal = juego.Puntuacion;
+                            contador++;
+                        }
+                        
                         Console.Clear();
                         Console.WriteLine("Has perdido...");
-                        Console.WriteLine($"Tu puntuación ha sido de {juego.Puntuacion} puntos");
+                        Console.WriteLine($"Tu puntuación ha sido de {puntuacionFinal} puntos");
                         Console.WriteLine("Pulsa ENTER para vovler al menu...");
 
                         juego.Vida = 3;
