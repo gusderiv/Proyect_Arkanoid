@@ -16,6 +16,7 @@ namespace Proyect_Arkanoid
                 switch (EstadoJuego.EstadoActual)
                 {
                     case EstadoJuego.Estado.Menu:
+                        Console.Clear();
                         juego.MostrarMenu();
                         ConfigurarConsola();
                         break;
@@ -53,11 +54,22 @@ namespace Proyect_Arkanoid
                         break;
                     case EstadoJuego.Estado.GameOver:
                         Console.Clear();
-                        Console.WriteLine("Juego terminado");
+                        Console.WriteLine("Has perdido...");
+                        Console.WriteLine($"Tu puntuación ha sido de {juego.Puntuacion} puntos");
+                        Console.WriteLine("Pulsa ENTER para vovler al menu...");
+
+                        juego.Vida = 3;
+                        juego.Puntuacion = 0;
+                        juego.Pelota.Y = 10;
+                        juego.Pelota.X = 40;
 
                         ConsoleKeyInfo teclaENTER = Console.ReadKey();
 
-                        seguirJugando = false;
+                        if (teclaENTER.Key == ConsoleKey.Enter)
+                        {
+                            EstadoJuego.EstadoActual = EstadoJuego.Estado.Menu;
+                            Console.Clear();
+                        }
                         break;
                 }
             }

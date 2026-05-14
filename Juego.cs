@@ -97,7 +97,8 @@ namespace Proyect_Arkanoid
         public void MostrarMenu()
         {
             EstadoJuego.EstadoActual = EstadoJuego.Estado.Menu;
-            Console.WriteLine("Pulsa la tecla Enter");
+            Console.WriteLine("Bienvenido a ARKANOID");
+            Console.WriteLine("Pulsa la tecla Enter para empezar a jugar");
             ConsoleKeyInfo tecla = Console.ReadKey();
             if (tecla.Key == ConsoleKey.Enter)
             {
