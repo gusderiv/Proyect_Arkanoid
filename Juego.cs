@@ -52,6 +52,7 @@ namespace Proyect_Arkanoid
                         {
                             ladrillo.Destruido = true;
                             ladrilloGolpeado = ladrillo;
+                            puntuacion += 10;
                         }
                     }
                 }
@@ -73,7 +74,8 @@ namespace Proyect_Arkanoid
 
         public void generarNivel()
         {
-            for(int i = 6; i < Console.WindowWidth-8; i+= 2)
+            nivelActual.Clear();
+            for (int i = 6; i < Console.WindowWidth-8; i+= 2)
             {
                 for(int j = 4; j < 9; j+= 2)
                 {
@@ -95,14 +97,12 @@ namespace Proyect_Arkanoid
         public void MostrarMenu()
         {
             EstadoJuego.EstadoActual = EstadoJuego.Estado.Menu;
-
             Console.WriteLine("Pulsa la tecla Enter");
-
             ConsoleKeyInfo tecla = Console.ReadKey();
-
             if (tecla.Key == ConsoleKey.Enter)
             {
                 EstadoJuego.EstadoActual = EstadoJuego.Estado.Jugando;
+                Console.Clear();
             }
         }
 

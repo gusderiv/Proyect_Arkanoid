@@ -17,48 +17,50 @@ namespace Proyect_Arkanoid
                 {
                     case EstadoJuego.Estado.Menu:
                         juego.MostrarMenu();
+                        ConfigurarConsola();
                         break;
 
                     case EstadoJuego.Estado.Jugando:
-                        Console.Clear();
-                        ConfigurarConsola();
-                        while (EstadoJuego.EstadoActual == EstadoJuego.Estado.Jugando)
+                        if (Console.KeyAvailable)
                         {
-                            Console.SetCursorPosition(0, 1);
-                            Console.Write($"Vida: {juego.Vida} | Puntuacion: {juego.Puntuacion}");
-                            juego.Pelota.ActualizarPosicion();
-
-                            if (Console.KeyAvailable)
+                            var key = Console.ReadKey(true).Key;
+                            if (key == ConsoleKey.P)
                             {
-                                ConsoleKey tecla = Console.ReadKey(true).Key;
-                                juego.Nave.Mover(tecla);
+                                EstadoJuego.EstadoActual = EstadoJuego.Estado.Pausa;
+                                break;
                             }
-
-                            juego.comprobarColisiones();
-                            juego.ComprobarColisionesLadrillos();
-                            perderVida();
+                            juego.Nave.Mover(key);
                         }
+
+                        Console.SetCursorPosition(0, 1);
+                        Console.Write($"Vida: {juego.Vida} | Puntuacion: {juego.Puntuacion}");
+
+                        juego.Pelota.ActualizarPosicion();
+                        juego.comprobarColisiones();
+                        juego.ComprobarColisionesLadrillos();
+                        perderVida();
+                        Thread.Sleep(25);
                         break;
 
                     case EstadoJuego.Estado.Pausa:
-                        Console.Clear();
-                        Console.WriteLine("Juego pausado");
-                        break;
-                    case EstadoJuego.Estado.GameOver:
-                        Console.Clear();
-                        Console.WriteLine("Juego terminado");
-                        Console.WriteLine("Pulsa ENTER para seguir jugando...");
-
-                        ConsoleKeyInfo teclaENTER = Console.ReadKey();
-
-                        if (teclaENTER.Key == ConsoleKey.Enter)
+                        Console.WriteLine("Juego pausado. Pulsa P para continuar...");
+                        var teclaPausa = Console.ReadKey(true).Key;
+                        if (teclaPausa == ConsoleKey.P)
                         {
                             EstadoJuego.EstadoActual = EstadoJuego.Estado.Jugando;
                         }
                         break;
+                    case EstadoJuego.Estado.GameOver:
+                        Console.Clear();
+                        Console.WriteLine("Juego terminado");
+
+                        ConsoleKeyInfo teclaENTER = Console.ReadKey();
+
+                        seguirJugando = false;
+                        break;
                 }
             }
-        }
+        } 
 
         public void ConfigurarConsola()
         {

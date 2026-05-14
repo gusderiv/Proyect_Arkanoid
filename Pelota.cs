@@ -32,7 +32,6 @@ namespace Proyect_Arkanoid
         {
             Console.SetCursorPosition(this.X, this.Y);
             Console.Write("O");
-            Thread.Sleep(30);
         }
 
         public override void Borrar()
@@ -71,9 +70,12 @@ namespace Proyect_Arkanoid
 
         public void ActualizarPosicion()
         {
-            Borrar();
-            MoverP();
-            Dibujar();
+            if(EstadoJuego.EstadoActual == EstadoJuego.Estado.Jugando)
+            {
+                Borrar();
+                MoverP();
+                Dibujar();
+            }
         }
     }     
 }
