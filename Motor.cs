@@ -43,7 +43,8 @@ namespace Proyect_Arkanoid
                         break;
 
                     case EstadoJuego.Estado.Pausa:
-                        Console.WriteLine("Juego pausado. Pulsa P para continuar...");
+                        Console.SetCursorPosition(1, 27);
+                        Console.WriteLine("Juego pausado. Pulsa P para continuar");
                         var teclaPausa = Console.ReadKey(true).Key;
                         if (teclaPausa == ConsoleKey.P)
                         {
@@ -64,7 +65,7 @@ namespace Proyect_Arkanoid
 
         public void ConfigurarConsola()
         {
-            Console.SetWindowSize(80, 25);
+            Console.SetWindowSize(80, 45);
             Console.CursorVisible = false;
             Console.Clear();
             DibujarMarcos();
@@ -75,7 +76,7 @@ namespace Proyect_Arkanoid
         public void DibujarMarcos()
         {
             int width = 78;
-            int height = 23;
+            int height = 27;
 
             Console.SetCursorPosition(0, 2);
             Console.Write("┌");
@@ -116,7 +117,7 @@ namespace Proyect_Arkanoid
 
         public void perderVida()
         {
-            if(juego.Pelota.Y == juego.Nave.Y + 2 && juego.Vida > 0)
+            if(juego.Pelota.Y == juego.Nave.Y + 1 && juego.Vida > 0)
             {
                 juego.Vida -= 1;
             }

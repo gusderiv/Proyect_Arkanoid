@@ -19,8 +19,8 @@ namespace Proyect_Arkanoid
         private int cantida;
         public Juego()
         {
-            this.pelota = new Pelota(40, 10, 23, 78);
-            this.nave = new Nave(30, 20);
+            this.pelota = new Pelota(40, 10, 43, 78);
+            this.nave = new Nave(30, 25);
             this.puntuacion = 0;
             this.vida = 3;
         }
@@ -35,7 +35,7 @@ namespace Proyect_Arkanoid
         {
             Ladrillo ladrilloGolpeado = null;
 
-            Console.SetCursorPosition(1, 23);
+            Console.SetCursorPosition(1, 27);
 
             Console.Write($"Cantidad ladrillos sin destruir: {contenidolistaLadrillo(),-5}");
 
