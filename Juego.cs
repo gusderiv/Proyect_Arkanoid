@@ -55,7 +55,7 @@ namespace Proyect_Arkanoid
                         pelota.DirY = pelota.DirY * -1;
                         ladrillo.Resistencia--;
 
-                        if(ladrillo.Resistencia <= 0)
+                        if(ladrillo.Resistencia < 0)
                         {
                             ladrillo.Destruido = true;
                             ladrilloGolpeado = ladrillo;
@@ -69,6 +69,11 @@ namespace Proyect_Arkanoid
             {
                 nivelActual.Remove(ladrilloGolpeado);
                 VerificarListaVacia();
+            }
+
+            else
+            {
+                dibujarNivel();
             }
         }
 
