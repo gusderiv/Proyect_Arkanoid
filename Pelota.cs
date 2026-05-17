@@ -10,6 +10,7 @@ namespace Proyect_Arkanoid
         private int anchuraMaxima;
         private int alturaMinima;
         private int anchuraMinima;
+        private int velocidad;
 
         public Pelota(int x, int y, int alturaMaxima, int anchuraMaxima) : base(x, y)
         {
@@ -21,22 +22,25 @@ namespace Proyect_Arkanoid
             this.AnchuraMinima = 0;
             this.DirX = 1;
             this.DirY = -1;
+            this.velocidad = 30;
         }
 
         public int AlturaMaxima { get => alturaMaxima; set => alturaMaxima = value; }
         public int AnchuraMaxima { get => anchuraMaxima; set => anchuraMaxima = value; }
         public int AlturaMinima { get => alturaMinima; set => alturaMinima = value; }
         public int AnchuraMinima { get => anchuraMinima; set => anchuraMinima = value; }
+        public int Velocidad { get => velocidad; set => velocidad = value; }
 
         public override void Dibujar()
         {
-            Console.SetCursorPosition(this.X, this.Y);
+            Console.SetCursorPosition(this.X, this.Y);//////////////
             Console.Write("O");
+            Thread.Sleep(velocidad);
         }
 
         public override void Borrar()
         {
-            Console.SetCursorPosition(this.X, this.y);
+            Console.SetCursorPosition(this.X, this.Y);
 
             if (this.Y == 2 || this.Y == 26)
             {

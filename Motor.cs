@@ -43,7 +43,7 @@ namespace Proyect_Arkanoid
                         juego.comprobarColisiones();
                         juego.ComprobarColisionesLadrillos();
                         perderVida();
-                        Thread.Sleep(25);
+                        //Thread.Sleep(25);
                         break;
 
                     case EstadoJuego.Estado.Pausa:

@@ -14,15 +14,20 @@ namespace Proyect_Arkanoid
         Nave nave;
         int puntuacion;
         int vida;
+        private int nivelJuego;
 
         List<Ladrillo> nivelActual = new List<Ladrillo>();
         private int cantida;
+        private int resistencia;
+        private int valorInicialFor;
         public Juego()
         {
             this.pelota = new Pelota(40, 10, 43, 78);
             this.nave = new Nave(30, 25);
             this.puntuacion = 0;
-            this.vida = 3;
+            this.vida = 3333;
+            this.nivelJuego = 1;
+            this.valorInicialFor = 4;
         }
 
         internal Pelota Pelota { get => pelota; set => pelota = value; }
@@ -31,11 +36,12 @@ namespace Proyect_Arkanoid
         public int Vida { get => vida; set => vida = value; }
         internal List<Ladrillo> NivelActual { get => nivelActual; set => nivelActual = value; }
 
+        public int NivelJuego { get => nivelJuego; set => nivelJuego = value; }
         public void ComprobarColisionesLadrillos()
         {
             Ladrillo ladrilloGolpeado = null;
 
-            Console.SetCursorPosition(1, 27);
+            Console.SetCursorPosition(0, 27);
 
             Console.Write($"Cantidad ladrillos sin destruir: {contenidolistaLadrillo(),-5}");
 
@@ -43,12 +49,13 @@ namespace Proyect_Arkanoid
             {
                 if(!ladrillo.Destruido)
                 {
-                    if (pelota.Y == ladrillo.Y && pelota.X >= ladrillo.X && pelota.X <= ladrillo.X)
+                    if (pelota.Y == ladrillo.Y &&
+                       Math.Abs(pelota.X - ladrillo.X) <= 1)
                     {
                         pelota.DirY = pelota.DirY * -1;
                         ladrillo.Resistencia--;
 
-                        if(ladrillo.Resistencia == 0)
+                        if(ladrillo.Resistencia <= 0)
                         {
                             ladrillo.Destruido = true;
                             ladrilloGolpeado = ladrillo;
@@ -61,6 +68,7 @@ namespace Proyect_Arkanoid
             if (ladrilloGolpeado != null)
             {
                 nivelActual.Remove(ladrilloGolpeado);
+                VerificarListaVacia();
             }
         }
 
@@ -71,18 +79,38 @@ namespace Proyect_Arkanoid
                 pelota.DirY = pelota.DirY * -1;
             }
         }
+        public void VerificarListaVacia()
+        {
+
+            if (nivelActual.Count == 0)
+            {
+                CargarSiguienteNivel();
+            }
+
+        }
 
         public void generarNivel()
         {
             nivelActual.Clear();
-            for (int i = 6; i < Console.WindowWidth-8; i+= 2)
-            {
-                for(int j = 4; j < 9; j+= 2)
+            int inicial = valorInicialFor;
+           
+            Console.SetCursorPosition(0,29);
+            Console.Write("valor de Inicial: " + inicial+" ");
+
+            Console.SetCursorPosition(0, 31);
+            Console.Write("resistencia Ladrillo " + resistencia+" ");
+            
+
+
+            for (int i = 6; i < Console.WindowWidth - 8; i += 2)
+            {     
+                for (int j = 4; j <= inicial; j += 2)
                 {
-                    Ladrillo ladrillo = new Ladrillo(i, j, 1);
+                    Ladrillo ladrillo = new Ladrillo(i, j, resistencia);//1 es resistencia
                     nivelActual.Add(ladrillo);
                 }
             }
+            valorInicialFor += 2;
         }
 
         public void dibujarNivel()
@@ -90,7 +118,8 @@ namespace Proyect_Arkanoid
             foreach(Ladrillo l in nivelActual)
             {
                 Console.SetCursorPosition(l.X, l.Y);
-                Console.Write("#");
+                // Console.Write("█");
+                Console.Write(l.Resistencia);
             }
         }
 
@@ -118,6 +147,15 @@ namespace Proyect_Arkanoid
         {
             cantida = nivelActual.Count;
             return cantida;
+        }
+
+        private void CargarSiguienteNivel()
+        {
+            int velocidadBase = pelota.Velocidad;
+            pelota.Velocidad = velocidadBase - (NivelJuego - 1) * 5;
+            resistencia ++;
+            generarNivel();
+            dibujarNivel();
         }
 
     }
